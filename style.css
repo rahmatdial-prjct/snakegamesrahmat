@@ -1,0 +1,285 @@
+/* ===== Global Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    /* Prevent blur on canvas */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.pixel-font {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* ===== Custom Scrollbar ===== */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== Skin Selection Styles ===== */
+.skin-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.skin-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.skin-option.selected {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.skin-option.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.skin-option.locked:hover {
+    transform: none;
+}
+
+.skin-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.skin-color-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.skin-info {
+    text-align: left;
+}
+
+.skin-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.skin-requirement {
+    font-size: 8px;
+    color: #fbbf24;
+}
+
+.skin-status {
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.skin-status.unlocked {
+    background: rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+
+.skin-status.locked {
+    background: rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+/* ===== Leaderboard Styles ===== */
+.leaderboard-entry {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 12px;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-entry:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.leaderboard-entry.rank-1 {
+    border-left-color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+}
+
+.leaderboard-entry.rank-2 {
+    border-left-color: #d1d5db;
+    background: rgba(209, 213, 219, 0.1);
+}
+
+.leaderboard-entry.rank-3 {
+    border-left-color: #cd7f32;
+    background: rgba(205, 127, 50, 0.1);
+}
+
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.rank-badge.rank-1 {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+}
+
+.rank-badge.rank-2 {
+    background: linear-gradient(135deg, #d1d5db, #9ca3af);
+    color: white;
+}
+
+.rank-badge.rank-3 {
+    background: linear-gradient(135deg, #cd7f32, #a0522d);
+    color: white;
+}
+
+.rank-badge.rank-other {
+    background: rgba(255, 255, 255, 0.1);
+    color: #9ca3af;
+}
+
+/* ===== Animations ===== */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 1024px) {
+    .pixel-font {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 768px) {
+    .pixel-font {
+        font-size: 0.8em;
+    }
+    
+    .skin-name {
+        font-size: 10px;
+    }
+    
+    .skin-requirement {
+        font-size: 7px;
+    }
+}
+
+/* ===== Canvas Styles ===== */
+#gameCanvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== Button Hover Effects ===== */
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* ===== Unlock Message Animation ===== */
+#unlockMessage {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* ===== Loading State ===== */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* ===== Glow Effect for Selected Skin ===== */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.skin-option.selected {
+    animation: glow 2s ease-in-out infinite;
+}
+
