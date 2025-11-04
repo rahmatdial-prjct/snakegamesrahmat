@@ -1,4 +1,4 @@
-# 🐍 Snake Game - Modern Edition
+# 🐍 Snake Game - Rahmat Edition
 
 Snake Game klasik dengan sentuhan modern, dilengkapi dengan sistem unlock skin, sound effects, dan leaderboard!
 
